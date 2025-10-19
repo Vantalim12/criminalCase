@@ -22,7 +22,7 @@ CriminalCase/
 │   ├── FILE_STRUCTURE.txt              # This file
 │   └── LICENSE                         # MIT License
 │
-├── 🎯 Backend API (apps/api/)
+├── 🎯 Backend API (backend/)
 │   ├── package.json                    # Backend dependencies
 │   ├── tsconfig.json                   # Backend TypeScript config
 │   └── src/
@@ -48,7 +48,7 @@ CriminalCase/
 │           ├── admin.routes.ts         # Admin endpoints
 │           └── stats.routes.ts         # GET /api/stats
 │
-├── 🎨 Frontend Web (apps/web/)
+├── 🎨 Frontend Web (frontend/)
 │   ├── package.json                    # Frontend dependencies
 │   ├── tsconfig.json                   # Frontend TypeScript config
 │   ├── tsconfig.node.json              # Vite TypeScript config

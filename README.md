@@ -17,9 +17,8 @@ A Solana-powered interactive treasure hunt platform where the highest token hold
 
 ```
 /
-├── apps/
-│   ├── web/              # Frontend (React + Vite + TanStack Router)
-│   └── api/              # Backend API (Node.js + Express)
+├── backend/              # Backend API (Node.js + Express)
+├── frontend/             # Frontend (React + Vite + TanStack Router)
 ├── packages/
 │   ├── types/            # Shared TypeScript types
 │   └── config/           # Shared configuration
@@ -70,7 +69,7 @@ npm install
 
 3. Set up environment variables:
 
-**Backend (`apps/api/.env`):**
+**Backend (`backend/.env`):**
 
 ```env
 PORT=3000
@@ -83,7 +82,7 @@ CORS_ORIGIN=http://localhost:5173
 JWT_SECRET=your-secret
 ```
 
-**Frontend (`apps/web/.env`):**
+**Frontend (`frontend/.env`):**
 
 ```env
 VITE_API_URL=http://localhost:3000

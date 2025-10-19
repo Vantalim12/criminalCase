@@ -3,7 +3,7 @@ services:
     name: discover-api
     env: node
     region: oregon
-    buildCommand: npm install && npm run build:api
+    buildCommand: npm install && npm run build:backend
     startCommand: npm run start:prod
     envVars:
       - key: NODE_ENV

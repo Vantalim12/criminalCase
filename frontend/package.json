@@ -8,21 +8,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@discover/types": "*",
     "@discover/config": "*",
-    "@tanstack/react-router": "^1.15.0",
-    "@solana/web3.js": "^1.87.6",
+    "@discover/types": "*",
     "@solana/wallet-adapter-base": "^0.9.23",
+    "@solana/wallet-adapter-phantom": "^0.9.28",
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
-    "@solana/wallet-adapter-wallets": "^0.19.32",
+    "@solana/wallet-adapter-solflare": "^0.6.32",
+    "@solana/web3.js": "^1.87.6",
     "@supabase/supabase-js": "^2.39.0",
+    "@tanstack/react-router": "^1.15.0",
+    "@trezor/connect": "^9.6.3",
+    "bs58": "^5.0.0",
+    "date-fns": "^3.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "rxjs": "^7.8.2",
     "socket.io-client": "^4.6.1",
-    "date-fns": "^3.0.6",
-    "bs58": "^5.0.0"
+    "viem": "^2.38.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

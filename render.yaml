@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: discover-api
+    env: node
+    region: oregon
+    buildCommand: npm install && npm run build:api
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: SOLANA_RPC_URL
+        sync: false
+      - key: ADMIN_ADDRESSES
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: JWT_SECRET
+        sync: false

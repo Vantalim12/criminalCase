@@ -24,7 +24,7 @@ const RootLayout: React.FC = () => {
             </main>
             <footer className="mt-16 py-6 border-t-2 border-accent text-center text-gray-400">
               <p className="font-heading text-lg">
-                $DISCOVER - IRL Treasure Hunt Platform
+                $FIND - IRL Treasure Hunt Platform
               </p>
               <p className="text-sm mt-2">Powered by Solana & Supabase</p>
             </footer>

@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2">
               <h1 className="font-heading text-4xl text-gold tracking-wider">
-                $DISCOVER
+                $FIND
               </h1>
             </Link>
             <nav className="flex gap-6">
@@ -28,13 +28,6 @@ export const Header: React.FC = () => {
                 activeProps={{ className: "text-gold" }}
               >
                 Gallery
-              </Link>
-              <Link
-                to="/admin"
-                className="text-white hover:text-gold transition-colors font-medium"
-                activeProps={{ className: "text-gold" }}
-              >
-                Admin
               </Link>
             </nav>
           </div>

@@ -39,11 +39,19 @@ class HolderService {
    */
   async syncHolders(onUpdate?: (holders: Holder[]) => void) {
     try {
-      // Get token address from config
-      const tokenAddress = await supabaseService.getConfig("token_address");
+      // Get token address from environment variable or config
+      const { env } = await import("../config/env.js");
+      let tokenAddress = env.TOKEN_CONTRACT_ADDRESS;
+
+      // Fallback to database config if env var not set
+      if (!tokenAddress) {
+        tokenAddress = await supabaseService.getConfig("token_address");
+      }
 
       if (!tokenAddress) {
-        console.warn("Token address not configured, skipping holder sync");
+        console.warn(
+          "Token address not configured in env or database, skipping holder sync"
+        );
         return;
       }
 

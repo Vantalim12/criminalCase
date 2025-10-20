@@ -58,7 +58,7 @@ export const PhotoSubmission: React.FC<PhotoSubmissionProps> = ({
 
     try {
       // Sign message
-      const message = `Submit find for $discover\nRound: ${roundId}\nTimestamp: ${Date.now()}`;
+      const message = `Submit find for $FIND\nRound: ${roundId}\nTimestamp: ${Date.now()}`;
       const encodedMessage = new TextEncoder().encode(message);
       const signatureBytes = await signMessage(encodedMessage);
       const signature = bs58.encode(signatureBytes);

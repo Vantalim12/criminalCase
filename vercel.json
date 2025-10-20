@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build --workspace=packages/types && npm run build --workspace=packages/config && npm run build --workspace=frontend",
+  "buildCommand": "cd packages/types && npm install && npm run build && cd ../config && npm install && npm run build && cd ../../frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
   "installCommand": "npm install",

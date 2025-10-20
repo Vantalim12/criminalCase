@@ -7,6 +7,9 @@ dist
 .vercel
 .render
 
+# Allow dist folders in workspace packages (needed for Vercel deployment)
+!packages/*/dist
+
 # Ignore all markdown files except README
 *.md
 !README.md

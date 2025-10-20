@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { formatDistanceToNow } from "date-fns";
 
 interface CountdownTimerProps {
   timeRemaining: number; // in milliseconds

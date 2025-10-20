@@ -1,7 +1,7 @@
 // Admin wallet addresses - configure these in your environment
 // These wallets will have access to the admin panel
 
-export const ADMIN_ADDRESSES = [
+export const ADMIN_ADDRESSES: string[] = [
   // Add your admin wallet addresses here
   // Example: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
 ];

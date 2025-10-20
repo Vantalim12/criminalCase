@@ -144,6 +144,72 @@ class ApiClient {
       }),
     });
   }
+
+  async getRewardInfo(authData: {
+    signature: string;
+    message: string;
+    walletAddress: string;
+  }): Promise<{
+    isConfigured: boolean;
+    balance?: number;
+    address?: string;
+    message?: string;
+  }> {
+    return this.fetch("/api/admin/rewards/info", {
+      method: "GET",
+      headers: {
+        "X-Wallet-Signature": authData.signature,
+        "X-Wallet-Message": authData.message,
+        "X-Wallet-Address": authData.walletAddress,
+      },
+    });
+  }
+
+  async sendReward(
+    recipientAddress: string,
+    authData: {
+      signature: string;
+      message: string;
+      walletAddress: string;
+    },
+    amount?: number,
+    volume24h?: number
+  ): Promise<{ success: boolean; signature: string; amount: number }> {
+    return this.fetch("/api/admin/rewards/send", {
+      method: "POST",
+      body: JSON.stringify({
+        signature: authData.signature,
+        message: authData.message,
+        walletAddress: authData.walletAddress,
+        recipientAddress,
+        amount,
+        volume24h,
+      }),
+    });
+  }
+
+  async calculateReward(
+    volume24h: number,
+    authData: {
+      signature: string;
+      message: string;
+      walletAddress: string;
+    }
+  ): Promise<{
+    amount: number;
+    volume24h: number;
+    formula: string;
+  }> {
+    return this.fetch("/api/admin/rewards/calculate", {
+      method: "POST",
+      body: JSON.stringify({
+        signature: authData.signature,
+        message: authData.message,
+        walletAddress: authData.walletAddress,
+        volume24h,
+      }),
+    });
+  }
 }
 
 export const api = new ApiClient();

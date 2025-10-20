@@ -13,6 +13,7 @@ export const env = {
   ADMIN_ADDRESSES: process.env.ADMIN_ADDRESSES?.split(",") || [],
   CORS_ORIGIN: process.env.CORS_ORIGIN || "http://localhost:5173",
   JWT_SECRET: process.env.JWT_SECRET || "default-secret-change-me",
+  REWARD_WALLET_PRIVATE_KEY: process.env.REWARD_WALLET_PRIVATE_KEY || "",
 };
 
 export function validateEnv() {

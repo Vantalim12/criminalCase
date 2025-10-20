@@ -1,8 +1,8 @@
 {
-  "buildCommand": "cd packages/types && npm install && npm run build && cd ../config && npm install && npm run build && cd ../../frontend && npm install && npm run build",
+  "buildCommand": "cd packages/types && npm run build && cd ../config && npm run build && cd ../../frontend && npm run build",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
-  "installCommand": "npm install",
+  "installCommand": "npm install --legacy-peer-deps",
   "rewrites": [
     {
       "source": "/(.*)",

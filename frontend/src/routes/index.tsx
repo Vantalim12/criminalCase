@@ -18,9 +18,8 @@ const IndexPage: React.FC = () => {
           CRIMINAL CASE: IRL FINDS
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Hold $FIND tokens and become the highest holder to get a chance to
-          find real-life items during 3-minute submission windows every 25
-          minutes!
+          Hold $FIND tokens and become the highest holder to get a $SOL during
+          3-minute submission windows every 25 minutes!
         </p>
       </div>
 

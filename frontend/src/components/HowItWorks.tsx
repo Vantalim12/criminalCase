@@ -56,9 +56,12 @@ export const HowItWorks: React.FC = () => {
               Highest Holder Gets the Chance
             </h3>
             <p className="text-lg leading-relaxed">
-              The <span className="text-accent font-bold">TOP HOLDER</span> at
-              the start of each round gets a 3-minute window to find and submit
-              a photo of the announced item on livestream!
+              The{" "}
+              <span className="text-accent font-bold">
+                ANY $FINDCOIN HOLDER
+              </span>{" "}
+              at the start of each round gets a 3-minute window to find and
+              submit a photo of the announced item on livestream!
             </p>
           </div>
         </div>

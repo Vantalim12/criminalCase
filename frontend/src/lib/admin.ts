@@ -8,8 +8,8 @@ export const ADMIN_ADDRESSES: string[] = [
   // ⚠️ IMPORTANT: Add YOUR wallet address here to access the admin panel!
   // When you connect this wallet, the admin panel will automatically appear on the main page
   
-  // For testing, add your current wallet address:
-  // "YOUR_WALLET_ADDRESS_HERE",
+  // Your admin wallet address:
+  "4Aub4FgXDeF96MEx2r7EQU5WmZvURQcAgLsHQGAFLDcz",
   
   // For production, add your production wallet address(es):
   // "PRODUCTION_WALLET_1",

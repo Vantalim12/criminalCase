@@ -146,6 +146,21 @@ export const LiveFeed: React.FC = () => {
         </div>
       </div>
 
+      {/* Debug Info (remove in production) */}
+      {publicKey && (
+        <div className="bg-gray-800 p-4 rounded border border-gray-600 text-sm">
+          <h3 className="font-bold text-yellow-400 mb-2">🔍 Debug Info:</h3>
+          <div className="space-y-1 text-gray-300">
+            <div>Your Wallet: {publicKey.toBase58()}</div>
+            <div>Highest Holder: {round?.highest_holder_address || "None"}</div>
+            <div>Is Highest Holder: {isHighestHolder ? "✅ Yes" : "❌ No"}</div>
+            <div>Current Phase: {phase}</div>
+            <div>Can Submit: {canSubmit ? "✅ Yes" : "❌ No"}</div>
+            <div>Active Round: {round ? `✅ Round #${round.round_number}` : "❌ None"}</div>
+          </div>
+        </div>
+      )}
+
       {/* Photo Submission (only for highest holder during submission window) */}
       {canSubmit && round && (
         <PhotoSubmission

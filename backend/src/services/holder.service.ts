@@ -90,8 +90,27 @@ class HolderService {
       if (onUpdate) {
         onUpdate(holders);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error syncing holders:", error);
+
+      // Handle rate limiting specifically
+      if (
+        error.message?.includes("429") ||
+        error.message?.includes("Too Many Requests")
+      ) {
+        console.warn("Rate limited by Solana RPC. Consider:");
+        console.warn(
+          "1. Using a paid RPC provider (Helius, QuickNode, Alchemy)"
+        );
+        console.warn("2. Increasing HOLDER_SYNC_INTERVAL_MS in config");
+        console.warn("3. Waiting before retrying");
+
+        // Skip this sync and try again later
+        return;
+      }
+
+      // For other errors, still log but don't crash
+      console.error("Non-rate-limit error:", error.message);
     }
   }
 

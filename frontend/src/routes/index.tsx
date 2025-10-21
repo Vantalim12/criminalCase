@@ -5,6 +5,7 @@ import { Stats } from "../components/Stats";
 import { HowItWorks } from "../components/HowItWorks";
 import { ContractAddress } from "../components/ContractAddress";
 import { AdminPanel } from "../components/AdminPanel";
+import { FAQ } from "../components/FAQ";
 import { isAdminWallet } from "../lib/admin";
 
 const IndexPage: React.FC = () => {
@@ -45,6 +46,8 @@ const IndexPage: React.FC = () => {
       <Stats />
 
       <LiveFeed />
+
+      <FAQ />
     </div>
   );
 };

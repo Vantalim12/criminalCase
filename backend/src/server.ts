@@ -20,7 +20,8 @@ validateEnv();
 const app = express();
 
 // Trust proxy for accurate IP detection behind Render's proxy
-app.set("trust proxy", true);
+// Only trust the first proxy (Render's load balancer)
+app.set("trust proxy", 1);
 
 const httpServer = createServer(app);
 const io = new SocketIOServer(httpServer, {

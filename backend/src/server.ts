@@ -18,6 +18,10 @@ import statsRoutes from "./routes/stats.routes";
 validateEnv();
 
 const app = express();
+
+// Trust proxy for accurate IP detection behind Render's proxy
+app.set("trust proxy", true);
+
 const httpServer = createServer(app);
 const io = new SocketIOServer(httpServer, {
   cors: {
@@ -27,12 +31,20 @@ const io = new SocketIOServer(httpServer, {
 });
 
 // Middleware
-app.use(cors({ 
-  origin: env.CORS_ORIGINS,
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Wallet-Signature", "X-Wallet-Message", "X-Wallet-Address"]
-}));
+app.use(
+  cors({
+    origin: env.CORS_ORIGINS,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Wallet-Signature",
+      "X-Wallet-Message",
+      "X-Wallet-Address",
+    ],
+  })
+);
 app.use(express.json({ limit: "15mb" }));
 app.use(express.urlencoded({ extended: true, limit: "15mb" }));
 

@@ -229,6 +229,24 @@ class SupabaseService {
     if (error) throw error;
   }
 
+  /**
+   * Clear all holders from the database
+   * Useful when changing token addresses
+   */
+  async clearAllHolders(): Promise<void> {
+    const { error } = await this.client
+      .from("holders")
+      .delete()
+      .neq("wallet_address", ""); // Delete all records
+
+    if (error) {
+      console.error("Error clearing holders:", error);
+      throw error;
+    }
+
+    console.log("All holders cleared from database");
+  }
+
   // Storage
   async uploadPhoto(file: Buffer, filename: string): Promise<string> {
     const { data, error } = await this.client.storage

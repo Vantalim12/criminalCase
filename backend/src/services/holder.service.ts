@@ -142,6 +142,41 @@ class HolderService {
     const holders = await this.getTopHolders(1);
     return holders[0] || null;
   }
+
+  /**
+   * Clear all cached holders data
+   * Useful when changing token addresses
+   */
+  async clearCache(): Promise<void> {
+    console.log("Clearing holders cache...");
+
+    // Clear in-memory cache
+    this.cachedHolders = [];
+    this.lastSync = null;
+
+    // Clear database cache
+    await supabaseService.clearAllHolders();
+
+    console.log("Holders cache cleared successfully");
+  }
+
+  /**
+   * Restart the sync with a fresh token address
+   */
+  async restartSync(onUpdate?: (holders: Holder[]) => void): Promise<void> {
+    console.log("Restarting holder sync...");
+
+    // Stop current sync
+    this.stopSync();
+
+    // Clear cache
+    await this.clearCache();
+
+    // Start fresh sync
+    this.startSync(onUpdate);
+
+    console.log("Holder sync restarted successfully");
+  }
 }
 
 export const holderService = new HolderService();

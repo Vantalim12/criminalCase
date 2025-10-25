@@ -2,6 +2,7 @@ import { Router } from "express";
 import { supabaseService } from "../services/supabase.service";
 import { gameService } from "../services/game.service";
 import { rewardService } from "../services/reward.service";
+import { holderService } from "../services/holder.service";
 import { verifyWallet } from "../middleware/auth.middleware";
 import { verifyAdmin } from "../middleware/admin.middleware";
 
@@ -96,11 +97,12 @@ router.patch("/config", async (req, res) => {
 router.get("/rewards/info", async (req, res) => {
   try {
     const isConfigured = rewardService.isConfigured();
-    
+
     if (!isConfigured) {
       return res.json({
         isConfigured: false,
-        message: "Reward wallet not configured. Set REWARD_WALLET_PRIVATE_KEY in environment variables.",
+        message:
+          "Reward wallet not configured. Set REWARD_WALLET_PRIVATE_KEY in environment variables.",
       });
     }
 
@@ -131,13 +133,16 @@ router.post("/rewards/send", async (req, res) => {
     }
 
     let result;
-    
+
     if (amount !== undefined) {
       // Send specific amount
       result = await rewardService.sendReward(recipientAddress, amount);
     } else {
       // Calculate and send based on volume
-      result = await rewardService.sendCalculatedReward(recipientAddress, volume24h || 0);
+      result = await rewardService.sendCalculatedReward(
+        recipientAddress,
+        volume24h || 0
+      );
     }
 
     res.json({
@@ -158,7 +163,7 @@ router.post("/rewards/calculate", async (req, res) => {
   try {
     const { volume24h } = req.body;
     const amount = rewardService.calculateReward(volume24h || 0);
-    
+
     res.json({
       amount,
       volume24h: volume24h || 0,
@@ -167,6 +172,24 @@ router.post("/rewards/calculate", async (req, res) => {
   } catch (error) {
     console.error("Error calculating reward:", error);
     res.status(500).json({ error: "Failed to calculate reward" });
+  }
+});
+
+/**
+ * POST /api/admin/holders/clear-cache
+ * Clear holders cache and restart sync with new token address
+ */
+router.post("/holders/clear-cache", async (req, res) => {
+  try {
+    await holderService.restartSync();
+    res.json({
+      success: true,
+      message:
+        "Holders cache cleared and sync restarted with new token address",
+    });
+  } catch (error) {
+    console.error("Error clearing holders cache:", error);
+    res.status(500).json({ error: "Failed to clear holders cache" });
   }
 });
 

@@ -4,13 +4,13 @@
 export const ADMIN_ADDRESSES: string[] = [
   // Add your admin wallet addresses here
   // Example: "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
-  
+
   // ⚠️ IMPORTANT: Add YOUR wallet address here to access the admin panel!
   // When you connect this wallet, the admin panel will automatically appear on the main page
-  
+
   // Your admin wallet address:
-  "4Aub4FgXDeF96MEx2r7EQU5WmZvURQcAgLsHQGAFLDcz",
-  
+  "FzcTbnqZEXAjXeTn3Wty94p4A8cF7cXqRVeRQJaAiLFS",
+
   // For production, add your production wallet address(es):
   // "PRODUCTION_WALLET_1",
   // "PRODUCTION_WALLET_2",

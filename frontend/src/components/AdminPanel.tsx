@@ -26,6 +26,7 @@ export const AdminPanel: React.FC = () => {
   const [rewardAmount, setRewardAmount] = useState("");
   const [rewardVolume, setRewardVolume] = useState("");
   const [sendingReward, setSendingReward] = useState(false);
+  const [clearingCache, setClearingCache] = useState(false);
 
   const fetchPendingSubmissions = async () => {
     if (!publicKey || !signMessage) return;
@@ -180,6 +181,38 @@ export const AdminPanel: React.FC = () => {
     }
   };
 
+  const handleClearHoldersCache = async () => {
+    if (!publicKey || !signMessage) return;
+
+    const confirmed = confirm(
+      "Are you sure you want to clear the holders cache? This will remove all cached holder data and restart the sync with the current token address."
+    );
+
+    if (!confirmed) return;
+
+    setClearingCache(true);
+
+    try {
+      const message = `Clear holders cache\nTimestamp: ${Date.now()}`;
+      const encodedMessage = new TextEncoder().encode(message);
+      const signatureBytes = await signMessage(encodedMessage);
+      const signature = bs58.encode(signatureBytes);
+
+      const result = await api.clearHoldersCache({
+        signature,
+        message,
+        walletAddress: publicKey.toBase58(),
+      });
+
+      alert(result.message || "Holders cache cleared successfully!");
+    } catch (error: any) {
+      console.error("Error clearing holders cache:", error);
+      alert(error.message || "Failed to clear holders cache");
+    } finally {
+      setClearingCache(false);
+    }
+  };
+
   if (!publicKey) {
     return (
       <div className="text-center py-12">
@@ -225,6 +258,25 @@ export const AdminPanel: React.FC = () => {
         </div>
       </div>
 
+      {/* Clear Holders Cache */}
+      <div className="bg-primary p-6 rounded-lg border-2 border-red-500">
+        <h2 className="font-heading text-3xl mb-4 text-red-400">
+          🗑️ Clear Holders Cache
+        </h2>
+        <p className="text-gray-400 mb-4">
+          Use this when you've changed the token contract address in your
+          environment variables. This will clear all cached holder data and
+          restart the sync with the new token address.
+        </p>
+        <button
+          onClick={handleClearHoldersCache}
+          disabled={clearingCache}
+          className="bg-red-600 text-white font-bold px-6 py-3 rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {clearingCache ? "Clearing..." : "🗑️ Clear Cache & Restart Sync"}
+        </button>
+      </div>
+
       {/* Reward Wallet Info & Send Reward */}
       <div className="bg-primary p-6 rounded-lg border-2 border-green-500">
         <h2 className="font-heading text-3xl mb-4 text-green-400">
@@ -256,7 +308,7 @@ export const AdminPanel: React.FC = () => {
               <h3 className="font-heading text-xl mb-3 text-white">
                 Send Reward to Winner
               </h3>
-              
+
               <div className="space-y-3">
                 <div>
                   <label className="block text-sm text-gray-400 mb-1">
@@ -301,7 +353,8 @@ export const AdminPanel: React.FC = () => {
                 </div>
 
                 <div className="bg-blue-900/20 border border-blue-600 p-3 rounded text-xs text-blue-300">
-                  <strong>💡 Formula:</strong> Base (0.01 SOL) + Volume Bonus (0.5% of 24h volume)
+                  <strong>💡 Formula:</strong> Base (0.01 SOL) + Volume Bonus
+                  (0.5% of 24h volume)
                   <br />
                   Leave both fields empty to use minimum (0.01 SOL)
                 </div>

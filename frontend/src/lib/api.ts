@@ -210,6 +210,21 @@ class ApiClient {
       }),
     });
   }
+
+  async clearHoldersCache(authData: {
+    signature: string;
+    message: string;
+    walletAddress: string;
+  }): Promise<{ success: boolean; message: string }> {
+    return this.fetch("/api/admin/holders/clear-cache", {
+      method: "POST",
+      body: JSON.stringify({
+        signature: authData.signature,
+        message: authData.message,
+        walletAddress: authData.walletAddress,
+      }),
+    });
+  }
 }
 
 export const api = new ApiClient();
